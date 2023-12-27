@@ -1,23 +1,39 @@
 from math import floor
 from timeit import default_timer
 
-N = int(input("How many family teams/categories are there? "))
-A = float(input("Enter A: "))
-first_coupon_value = int(input("First coupon's value: "))
+team_size = {}
+
+with open("input.txt") as f:
+    first_line = f.readline().split()
+    N = int(first_line[0])
+    A = float(first_line[1])
+    available = int(first_line[2])
+    for ind, line in enumerate(f.readlines()):
+        team_size[ind] = int(line)
+
 start = default_timer()
 team_value = {}
 total = 0
+prev = 0
+prev_teams = {}
 
-for i in range(N):
-    local_families = 1 #int(input(f"How many families fall into the {i} category? "))
-    value = floor(team_value.get(i - 1, first_coupon_value / A) * A)
-    if value > 10:
-        team_value[i] = value
-        total += value
-    else:
-        team_value[i] = 0
+for num in range(available):
+    total = 0
+    for i in range(N):
+        value = floor(team_value.get(i - 1, num / A) * A)
+        if value >= 10:
+            team_value[i] = value
+            total += value * team_size[i]
+        else:
+            team_value[i] = 0
 
-    print(team_value[i])
+    if total > available:
+        break
+    prev = total
+    prev_teams = team_value.copy()
 
-print(total)
+print(prev)
+for item in prev_teams.values():
+    print(item)
+
 print(f"time: {default_timer() - start}")
