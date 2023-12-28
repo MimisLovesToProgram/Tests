@@ -1,39 +1,38 @@
-from math import floor
-from timeit import default_timer
+# USER: ΤΟ_ΟΝΟΜΑ_ΜΟΥ_ΜΗΝ_ΞΕΧΑΣΕΙΣ_ΝΑ_ΤΟ_ΑΛΛΑΞΕΙΣ_BRO_ΘΑ_ΣΕ_ΦΑΩ
+# LANG: C
+# TASK: olivetrees
 
-team_size = {}
+N = 0
+M = 0
+trees_M = []
+areas = []
 
 with open("input.txt") as f:
-    first_line = f.readline().split()
-    N = int(first_line[0])
-    A = float(first_line[1])
-    available = int(first_line[2])
-    for ind, line in enumerate(f.readlines()):
-        team_size[ind] = int(line)
+    N, M = f.readline().split()
+    trees_M = [int(item) for item in f.readline().split()]
 
-start = default_timer()
-team_value = {}
-total = 0
-prev = 0
-prev_teams = {}
+N = int(N)
+M = int(M)
+rstreak = 0
+lstreak = 0
 
-for num in range(available):
-    total = 0
-    for i in range(N):
-        value = floor(team_value.get(i - 1, num / A) * A)
-        if value >= 10:
-            team_value[i] = value
-            total += value * team_size[i]
-        else:
-            team_value[i] = 0
-
-    if total > available:
+# Code for area finding here
+for ind, num in enumerate(trees_M):
+    for llengths in range(1, M):
+        if ind - llengths >= 0 and trees_M[ind - llengths] <= trees_M[ind - llengths + 1]:
+            lstreak += 1
+            continue
         break
-    prev = total
-    prev_teams = team_value.copy()
 
-print(prev)
-for item in prev_teams.values():
-    print(item)
+    for rlengths in range(1, M):
+        if ind + rlengths < M and trees_M[ind + rlengths] <= trees_M[ind + rlengths - 1]:
+            rstreak += 1
+            continue
+        break
 
-print(f"time: {default_timer() - start}")
+    areas.append((N - num) * (lstreak + rstreak + 1))
+    lstreak = 0
+    rstreak = 0
+
+with open("output.txt", "w") as f:
+    f.write(f"{max(areas)}\n")
