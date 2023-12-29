@@ -7,7 +7,7 @@ M = 0
 trees_M = []
 areas = []
 
-with open("input.txt") as f:
+with open("olivetrees.in") as f:
     N, M = f.readline().split()
     trees_M = [int(item) for item in f.readline().split()]
 
@@ -34,5 +34,5 @@ for ind, num in enumerate(trees_M):
     lstreak = 0
     rstreak = 0
 
-with open("output.txt", "w") as f:
+with open("olivetrees.out", "w") as f:
     f.write(f"{max(areas)}\n")
