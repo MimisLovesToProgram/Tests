@@ -5,7 +5,6 @@ def backtrack(nums):
         if len(nums) - 1 <= i + num:
             return minimum
         
-    
 
 class Solution:
     def jump(self, nums: list) -> int:
