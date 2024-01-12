@@ -1,6 +1,7 @@
 # USER: ΤΟ_ΟΝΟΜΑ_ΜΟΥ_ΜΗΝ_ΞΕΧΑΣΕΙΣ_ΝΑ_ΤΟ_ΑΛΛΑΞΕΙΣ_BRO_ΘΑ_ΣΕ_ΦΑΩ
 # LANG: C
 # TASK: olivetrees
+import os
 
 # Αρχικοποιούμε τις μεταβλητές απο το αρχείο εισόδου, και μια μεταβλητή για τα πιθανά εμβαδά.
 N = 0
@@ -9,7 +10,7 @@ trees_M = []
 areas = []
 
 # Πέρνουμε τις πληροφορίες που έχει το αρχείο εισόδου.
-with open("olivetrees.in") as f:
+with open(f"{os.getcwd()}\\Competition_Problems\\olivetreesin.txt") as f:
     N, M = f.readline().split()
     trees_M = [int(item) for item in f.readline().split()]
 
@@ -42,5 +43,5 @@ for ind, num in enumerate(trees_M):
     rstreak = 0
 
 # Τέλος, γράφουμε την λύση στο αρχείο εξόδου.
-with open("olivetrees.out", "w") as f:
+with open(f"{os.getcwd()}\\Competition_Problems\\olivetreesout.txt", "w") as f:
     f.write(f"{max(areas)}\n")
