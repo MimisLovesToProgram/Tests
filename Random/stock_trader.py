@@ -1,4 +1,13 @@
-import yfinance
+import yfinance as yf
 
-data = yfinance.download("TSLA", "2024-01-01", "2024-01-12")
-print(data["Low"])
+# Define the stock symbol
+symbol = 'AAPL'
+
+# Create a Ticker object for the stock
+ticker = yf.Ticker(symbol)
+
+# Retrieve the real-time market data for the stock
+data = ticker.info['regularMarketOpen']
+
+# Print the real-time market data
+print(data)
