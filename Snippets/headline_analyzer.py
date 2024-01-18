@@ -5,14 +5,15 @@
 from nltk.sentiment import SentimentIntensityAnalyzer
 
 # Defining a dictionary of 'safe' companies and their Ticker Symbols:
-safe_company_tickers = {"Berkshire Hathaway": "BRK.A",
+safe_company_tickers = {"Berkshire Hathaway": "BRK.B",
                         "The Walt Disney Company": "DIS",
                         "Vanguard High-Dividend Yield ETF": "VYM",
                         "Procter & Gamble": "PG",
                         "Vanguard Real Estate Index Fund": "VNQ",
                         "Starbucks": "SBUX",
                         "Apple": "AAPL",
-                        "Quest Diagnostics": "DGX",}
+                        "Quest Diagnostics": "DGX",
+                        "Microsoft": "MSFT"}
 
 # Define the input text
 input_text = "Apple Announces Record-Braking Profits for 2024."
