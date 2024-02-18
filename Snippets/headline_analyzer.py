@@ -5,7 +5,7 @@
 from nltk.sentiment import SentimentIntensityAnalyzer
 
 # Define the input text
-input_text = "Hello."
+input_text = "Apple Announces Record-Breaking Profits for 2024."
 
 # Initialize the sentiment analyzer
 sia = SentimentIntensityAnalyzer()
